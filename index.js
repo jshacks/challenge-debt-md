@@ -1,6 +1,10 @@
 const express = require('express');
-
+const router_basic = require('./router_basic');
 const app = express();
+
+app.listen(8080);
+
+app.use("/api/v1/", router_basic)
 
 const mongodb = require('mongodb');
 const mongoose = require('mongoose');
@@ -38,8 +42,6 @@ db.once('open', function() {
         console.log(err,saved)
     })*/
 });
-
-app.listen(8080);
 
 app.get('/', (req, res) => {
     Debt.find({'type':'bilateral'},(err,result) => {
