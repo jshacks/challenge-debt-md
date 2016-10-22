@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const db = require('../db.js');
 const Creditor = require('./creditor.js');
+const Async = require('async');
 
 var debtSchema = mongoose.Schema({
     creditor: {type: mongoose.Schema.Types.ObjectId, ref: 'Creditor', required: true},
@@ -9,38 +10,49 @@ var debtSchema = mongoose.Schema({
     currency: String
 });
 
-var debtModel = mongoose.model('Debt', debtSchema);
+var Debt = mongoose.model('Debt', debtSchema);
 var debt = {};
 
 
     /*Creditor.creditorModel.findOne({},function(err,creditor){
         console.log(creditor)
-        var debtSample = new debtModel({
+        var debtSample = new Debt({
             creditor: creditor,
             type: 'bilateral',
-            date: new Date('31 July 2016'),
-            sold: '73096315.71',
+            date: new Date('31 June 2016'),
+            sold: '41096315.71',
             currency: 'USD'
         });
         debtSample.save((err,saved) => {
             console.log(err,saved)
         })
-        
     })*/
 
 
-debt.getTotal = function(){
-    return 145490024077;
-}
-
-debt.getTotalPerCreditor = function(creditor,callback){
-    debtModel.find({'creditor':creditor},(err,debts) => {
-        callback(debts)
+debt.getTotal = function(callback){
+    var total = 0;
+    Creditor.getAll(function(creditors){
+        Async.map(creditors, (creditor, clbk) => {
+            debt.getTotalPerCreditor(creditor._id,function(err, debt){
+                total = total + debt;
+                console.log(debt)
+                clbk(null, total);
+            });
+        }, (err, results) => {
+            results.forEach(function(creditor_last,index){
+                total += creditor_last.sold
+            });
+            callback(total)
+        })
     });
 }
 
+debt.getTotalPerCreditor = function(creditor_id,callback){
+    Debt.findOne({'creditor':creditor_id}).sort('-date').populate('creditor').exec(callback);
+}
+
 debt.getAll = function(callback){
-    debtModel.find({}).populate('creditor').exec(callback);
+    Debt.find({}).populate('creditor').exec(callback);
 }
 
 module.exports = debt;

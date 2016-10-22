@@ -23,7 +23,7 @@ creditor.getTotal = function(){
 }
 
 creditor.getCreditor = function(creditor_id,callback){
-    creditorModel.find({'id':creditor_id},(err,result) => {
+    creditor.creditorModel.find({'id':creditor_id},(err,result) => {
         callback(result);
     });
 }
@@ -35,8 +35,8 @@ creditor.getCreditorID = function(creditor_name,callback){
 }
 
 creditor.getAll = function(callback){
-    creditorModel.find({},(err,result) => {
-        callback(result);
+    creditor.creditorModel.find({},(err,creditors) => {
+        callback(creditors);
     });
 }
 
