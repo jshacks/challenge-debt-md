@@ -2,14 +2,19 @@ const mongoose = require('mongoose');
 const db = require('../db.js');
 
 var creditorSchema = mongoose.Schema({
-	id: Number,
-    name: String
+    name: {type: String, unique: true}
 });
 
 var creditor = {};
 
 creditor.creditorModel = mongoose.model('Creditor', creditorSchema);
 
+/*var creditorSample = new creditor.creditorModel({
+    name: 'UniCredit Bank Austria'
+});
+creditorSample.save((err,saved) => {
+    console.log(err,saved)
+})*/
 creditor.new = function(sold, id){
     console.log(sold.name)
     var newModel = creditor.creditorModel ( {
