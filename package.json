@@ -8,6 +8,7 @@
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.4"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "echo \"Error: src/index.js is not configured\" && exit 1",
