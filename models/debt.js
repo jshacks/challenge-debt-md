@@ -14,13 +14,13 @@ var Debt = mongoose.model('Debt', debtSchema);
 var debt = {};
 
 
-    /*Creditor.creditorModel.findOne({name:"Agentia Japoneza de Cooperare Internationala"},function(err,creditor){
+    /*Creditor.creditorModel.findOne({name:"UniCredit Bank Austria"},function(err,creditor){
         console.log(creditor)
         var debtSample = new Debt({
             creditor: creditor,
             type: 'bilateral',
-            date: new Date('31 June 2016'),
-            sold: '33096315.71',
+            date: new Date('31 July 2016'),
+            sold: '21055319',
             currency: 'USD'
         });
         debtSample.save((err,saved) => {
@@ -57,18 +57,14 @@ debt.getTotal = function(callback){
              }
          }, 
          {
-            $project: { total: { $sum: '$sold' } }
+            $group: { 
+                _id: 1,
+                total: { $sum: '$sold' } 
+            }
          }
        ]
-    ).exec(function(err,resultArr){
-        console.log(err,resultArr)
-        return callback('no result')
-        if (resultArr.length === 1)
-            return callback(resultArr[0].sold)
-        total = resultArr.reduce(function(a,b){
-            return a.sold + b.sold;
-        });
-        callback(total)
+    ).exec(function(err,result){
+        callback(result[0].total)
     });
 }
 
