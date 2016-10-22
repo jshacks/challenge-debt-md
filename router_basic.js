@@ -5,7 +5,8 @@ routes.get('/api/v1/debt/total', (req, res) => {
 });
 
 routes.get('/debt/:creditor', (req, res) => {
-  res.json({ value: 1300000.50 });
+  var creditor = req.params.creditor
+  res.json({ "creditor": creditor });
 });
 
 module.exports = routes;
