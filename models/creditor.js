@@ -10,13 +10,12 @@ var creditor = {};
 
 creditor.creditorModel = mongoose.model('Creditor', creditorSchema);
 
-var creditorSample = new creditor.creditorModel({
-    id: 1,
-    name: 'Agentia Japoneza de Cooperare Internationala',
+/*var creditorSample = new creditor.creditorModel({
+    name: 'The Commodity Credit Corporation',
 });
 creditorSample.save((err,saved) => {
     console.log(err,saved)
-})
+})*/
 
 creditor.getTotal = function(){
     
