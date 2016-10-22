@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const db = require('../db.js');
 
 var creditorSchema = mongoose.Schema({
-	id: Number,
-    name: String
+    name: {type: String, unique: true}
 });
 
 var creditor = {};
@@ -11,7 +10,7 @@ var creditor = {};
 creditor.creditorModel = mongoose.model('Creditor', creditorSchema);
 
 /*var creditorSample = new creditor.creditorModel({
-    name: 'The Commodity Credit Corporation',
+    name: 'Agentia Japoneza de Cooperare Internationala'
 });
 creditorSample.save((err,saved) => {
     console.log(err,saved)
