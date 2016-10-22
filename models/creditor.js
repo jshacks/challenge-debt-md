@@ -10,7 +10,7 @@ var creditor = {};
 creditor.creditorModel = mongoose.model('Creditor', creditorSchema);
 
 /*var creditorSample = new creditor.creditorModel({
-    name: 'Agentia Japoneza de Cooperare Internationala'
+    name: 'UniCredit Bank Austria'
 });
 creditorSample.save((err,saved) => {
     console.log(err,saved)
