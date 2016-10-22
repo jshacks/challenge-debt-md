@@ -1,4 +1,4 @@
-# JSHacks Project
+# Debt MD
 
 [![Travis Build Status](https://travis-ci.org/jshacks/boilerplate.svg?branch=master)](https://travis-ci.org/jshacks/boilerplate)
 [![devDependency Status](https://david-dm.org/jshacks/boilerplate/dev-status.svg)](https://david-dm.org/jshacks/boilerplate?type=dev)
