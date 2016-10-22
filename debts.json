@@ -1,0 +1,6 @@
+{"_id":{"$oid":"580b8dd95a76463a20d5f714"},"creditor":{"$oid":"580b8bd7e168f83639bcf7e3"},"sold":2.109631571e+07,"currency":"USD","date":{"$date":"2016-06-30T21:00:00.000Z"},"__v":0}
+{"_id":{"$oid":"580b8dfb6b117b3a78091486"},"creditor":{"$oid":"580b8bd7e168f83639bcf7e3"},"sold":5.409631571e+07,"currency":"USD","date":{"$date":"2016-07-30T21:00:00.000Z"},"__v":0}
+{"_id":{"$oid":"580b95cdde0a18466fb51350"},"creditor":{"$oid":"580b8d96e5520e39a412d6b0"},"sold":96315.71,"currency":"USD","date":{"$date":"2016-07-30T21:00:00.000Z"},"__v":0}
+{"_id":{"$oid":"580b95e2c4364946aa4554da"},"creditor":{"$oid":"580b8d96e5520e39a412d6b0"},"sold":3.309631571e+07,"currency":"USD","date":{"$date":"2016-06-30T21:00:00.000Z"},"__v":0}
+{"_id":{"$oid":"580b9a1d8347164c683d1f12"},"creditor":{"$oid":"580b99e74b6a4d4be91c5fd9"},"sold":2.09631571e+06,"currency":"USD","date":{"$date":"2016-06-30T21:00:00.000Z"},"__v":0}
+{"_id":{"$oid":"580b9a3a4f22044ca4b435ce"},"creditor":{"$oid":"580b99e74b6a4d4be91c5fd9"},"sold":21055319,"currency":"USD","date":{"$date":"2016-07-30T21:00:00.000Z"},"__v":0}
