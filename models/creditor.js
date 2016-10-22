@@ -10,12 +10,13 @@ var creditor = {};
 
 creditor.creditorModel = mongoose.model('Creditor', creditorSchema);
 
-/*var creditorSample = new creditor.creditorModel({
-    name: 'The Commodity Credit Corporation',
-});
-creditorSample.save((err,saved) => {
-    console.log(err,saved)
-})*/
+creditor.new = function(sold, id){
+    var newModel = creditorModel ( {
+        "id": id,
+        "name": sold.name
+    })
+    newModel.save()
+}
 
 creditor.getTotal = function(){
     
@@ -23,6 +24,12 @@ creditor.getTotal = function(){
 
 creditor.getCreditor = function(creditor_id,callback){
     creditorModel.find({'id':creditor_id},(err,result) => {
+        callback(result);
+    });
+}
+
+creditor.getCreditorID = function(creditor_name,callback){
+    creditorModel.find({'name': creditor_name},(err,result) => {
         callback(result);
     });
 }
