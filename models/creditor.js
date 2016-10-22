@@ -10,14 +10,11 @@ var creditor = {};
 
 creditor.creditorModel = mongoose.model('Creditor', creditorSchema);
 
-var creditSample = new creditor.creditorModel({
-    creditor_id: 1,
-    type: 'bilateral',
-    date: new Date('31 July 2016'),
-    sold: '73096315.71',
-    currency: 'USD'
+var creditorSample = new creditor.creditorModel({
+    id: 1,
+    name: 'Agentia Japoneza de Cooperare Internationala',
 });
-creditSample.save((err,saved) => {
+creditorSample.save((err,saved) => {
     console.log(err,saved)
 })
 
