@@ -8,7 +8,7 @@ routes.get('/debt/total', (req, res) => {
 });
 
 routes.get('/debt/all', (req, res) => {
-	debtModel.getAll(function(result){
+	debtModel.getAll(function(err, result){
 		res.json(result);
 	});
 });
