@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="col-md-4">
     <div class="debt-box">
-        <h5 v-text="title"></h5>
+        <h5 v-text="name"></h5>
         <div class="small-debt">
           <h3 v-text="commaSeparated"></h3>
         </div>
@@ -11,10 +11,10 @@
 
 <script>
 export default {
-  props: ['debt', 'title'],
+  props: ['name', 'value'],
   computed: {
     commaSeparated () {
-      let d = this.debt.toString().split('.')
+      let d = this.value.toString().split('.')
       let e = d[0].split('').reverse().join('')
       e = e.match(/.{1,3}/g).join(',').split('').reverse().join('')
       let decimal = (d[1] || '00').substring(0, 2)

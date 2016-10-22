@@ -1,34 +1,24 @@
 <template lang="html">
   <div class="big-debt-box">
     <div class="container">
-      <h2 class="big-debt-undertitle" v-text="bigDebtTitle"></h2>
+      <h2 class="big-debt-undertitle">Datoria de Stat Externă</h2>
       <div class="big-debt">
         <h1 v-text="commaSeparated"></h1>
       </div>
-      <h4 v-html="debtPerPerson">
+      <h4>
+        <i class="ion-ios-person"></i>
+        ${{debtPerPerson}}
+        <span>de persoană</span>
       </h4>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: ['bigDebtTitle', 'bigDebt', 'population'],
-  computed: {
-    commaSeparated () {
-      let d = this.bigDebt.toString().split('.')
-      let e = d[0].split('').reverse().join('')
-      e = e.match(/.{1,3}/g).join(',').split('').reverse().join('')
-      let decimal = (d[1] || '00').substring(0, 2)
-      return `$${e}.${decimal}`
-    },
-    debtPerPerson () {
-      let personDebt = this.bigDebt / this.population | 0
-      return `<i class="ion-ios-person"></i>$${personDebt} <span>de persoană</span>`
-    }
-  },
-  methods: {},
-  components: {}
+  computed: mapGetters(['commaSeparated', 'debtPerPerson'])
 }
 </script>
 
