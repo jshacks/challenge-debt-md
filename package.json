@@ -1,27 +1,37 @@
 {
   "name": "challenge-debt-md",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Debt of RM",
   "main": "index.js",
   "dependencies": {
     "express": "^4.14.0",
-    "mongodb": "^2.2.11"
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.6.4"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo \"Error: src/index.js is not configured\" && exit 1",
+    "release": "echo \"Error: release system is not configured\" && exit 1",
+    "lint": "echo \"Error: linting system is not configured\" && exit 1",
+    "build": "echo \"Error: build system is not configured\" && exit 1",
+    "bump-version": "echo \"Error: bump-version system is not configured\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jshacks/challenge-debt-md.git"
   },
   "keywords": [
-    "debt",
+    "jshacks",
+    "oss",
+    "contributing",
+    "community",
+	"debt",
     "RM",
     "MD"
   ],
-  "author": "DebtMD",
-  "license": "ISC",
+  "author": "JSHacks <contact@jshacks.io>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jshacks/challenge-debt-md/issues"
   },
