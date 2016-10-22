@@ -19,8 +19,8 @@ var debt = {};
         var debtSample = new Debt({
             creditor: creditor,
             type: 'bilateral',
-            date: new Date('31 June 2016'),
-            sold: '41096315.71',
+            date: new Date('31 July 2016'),
+            sold: '54096315.71',
             currency: 'USD'
         });
         debtSample.save((err,saved) => {
@@ -30,7 +30,7 @@ var debt = {};
 
 
 debt.getTotal = function(callback){
-    var total = 0;
+    /*var total = 0;
     Creditor.getAll(function(creditors){
         Async.map(creditors, (creditor, clbk) => {
             debt.getTotalPerCreditor(creditor._id,function(err, debt){
@@ -44,6 +44,29 @@ debt.getTotal = function(callback){
             });
             callback(total)
         })
+    });*/
+    Debt.aggregate(
+       [
+         
+         { $sort: { creditor: 1, date: 1, sold: 1 } },
+         {
+           $group:
+             {
+               _id: "$creditor",
+               sold: { $last: "$sold" }
+             }
+         }
+       ]
+    ).exec(function(err,resultArr){
+        console.log(err,resultArr)
+        if(!resultArr)
+            return callback('no result')
+        if (resultArr.length === 1)
+            return callback(resultArr[0].sold)
+        total = resultArr.reduce(function(a,b){
+            return a.sold + b.sold;
+        });
+        callback(total)
     });
 }
 
