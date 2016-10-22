@@ -1,8 +1,10 @@
 const express = require('express');
-
+const router_basic = require('./router_basic');
 const app = express();
 
 app.listen(8080);
+
+app.use(router_basic)
 
 //lets require/import the mongodb native drivers.
 const mongodb = require('mongodb');
