@@ -1,0 +1,29 @@
+{
+  "name": "challenge-debt-md",
+  "version": "1.0.0",
+  "description": "Debt of RM",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jshacks/challenge-debt-md.git"
+  },
+  "keywords": [
+    "debt",
+    "RM",
+    "MD"
+  ],
+  "author": "DebtMD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jshacks/challenge-debt-md/issues"
+  },
+  "homepage": "https://github.com/jshacks/challenge-debt-md#readme"
+}
