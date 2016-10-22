@@ -4,7 +4,7 @@ const app = express();
 
 app.listen(8080);
 
-app.use(router_basic)
+app.use("/api/v1/", router_basic)
 
 //lets require/import the mongodb native drivers.
 const mongodb = require('mongodb');
@@ -28,8 +28,4 @@ MongoClient.connect(url, function (err, db) {
     //Close connection
     db.close();
   }
-});
-
-app.get('/', (req, res) => {
-  res.send('{"debt":1312312,"curency":"USD"}');
 });
