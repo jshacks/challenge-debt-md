@@ -34,54 +34,57 @@ export default {
 
 <style lang="css">
   .header {
-    padding: 35px 0 40px;
-    border-bottom: 1px solid #e1e1e1;
-    margin-bottom: 140px;
-    background: #fff;
-    box-shadow: 0 1px 0 1px #fff;
+  padding: 30px 0 35px;
+  border-bottom: 1px solid #e1e1e1;
+  margin-bottom: 30px;
+  background: #fff;
+  box-shadow: 0 0 0 1px #fff;
   }
   .header .logo h1 {
-    font-weight: 600;
-    font-size: 35px;
-    line-height: 1em;
-    letter-spacing: 1px;
-    margin: 0;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 1em;
+  color: #000;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+  vertical-align: baseline;
   }
   .header .logo h1 span {
-    color: #00aff0;
+  color: #00aff0;
   }
   .header .share-debt {
-    text-align: right;
-    margin: 0;
-    padding: 5px 0 0;
-    color: #666;
-    font-size: 14px;
+  text-align: right;
+  margin: 0;
+  padding: 5px 0 0;
+  color: #666;
+  font-size: 14px;
   }
   .header .share-debt li {
-    display: inline-block;
-    list-style: none;
-    margin-left: 10px;
-    margin-top: -5px;
-    *zoom: 1;
-    *display: inline;
+  display: inline-block;
+  list-style: none;
+  margin-left: 10px;
+  margin-top: -5px;
+  *zoom: 1;
+  *display: inline;
   }
   .header .share-debt li:first-child {
-    margin-top: 0;
+  margin-top: 0;
   }
   .header .share-debt li a {
-    display: block;
-    color: #00aff0;
-    font-size: 18px;
-    width: 30px;
-    height: 30px;
-    border: 1px solid #00aff0;
-    border-radius: 100%;
-    text-align: center;
-    line-height: 1.5em;
-    padding-top: 1px;
+  display: block;
+  color: #00aff0;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #00aff0;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 1.5em;
+  padding-top: 1px;
   }
   .header .share-debt li a:hover {
-    background: #00aff0;
-    color: #fff;
+  background: #00aff0;
+  color: #fff;
   }
 </style>

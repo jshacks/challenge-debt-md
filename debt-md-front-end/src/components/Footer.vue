@@ -26,7 +26,7 @@ export default {
 <style lang="css">
   .footer {
     padding: 20px 0;
-    margin-top: 140px;
+    margin-top: 30px;
     border-top: 1px solid #e1e1e1;
     background: #fff;
     box-shadow: 0 -1px 0 1px #fff;
