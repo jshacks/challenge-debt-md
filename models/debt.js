@@ -133,7 +133,7 @@ debt.getTotalMonths = function(callback){
         var result_array = []
         for (var key in result) {
             if (result.hasOwnProperty(key)) { 
-                var tempObj = {                  "date": key,            "value": result[key]            } 
+                var tempObj = {"date": key,"value": result[key] } 
                 result_array.push(tempObj)
             }
         }
@@ -143,19 +143,9 @@ debt.getTotalMonths = function(callback){
 
 debt.getIncrement = function(callback){
     this.getTotalMonths(function(montsTotals){
-        var i = 0,
-        firstMonthTotal = 0,
-        lastMonthTotal = 0;
-        //montsTotals.forEach(function(month,index){
-            for(var date in montsTotals){
-                if(i===0)
-                    firstMonthTotal = parseInt(montsTotals[date]);
-                lastMonthTotal = parseInt(montsTotals[date]);
-                i++;
-            }
-            increment = ( lastMonthTotal - firstMonthTotal ) / ( 60 * 60 * 24 * 30);
-            callback(increment);
-        })
+        const increment = ( parseInt(montsTotals[0].value) - parseInt(montsTotals[montsTotals.length - 1].value) ) / ( 60 * 60 * 24 * 30);
+        callback(increment);
+    });
 }
 
 debt.getAll = function(callback){
