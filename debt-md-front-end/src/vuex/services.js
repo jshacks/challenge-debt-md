@@ -2,7 +2,7 @@ import request from 'browser-request'
 
 export function getBigDebt () {
   return new Promise((resolve, reject) => {
-    request('http://debtmd.ihub.spacer/api/v1/debt/total', function (er, response, body) {
+    request('http://debtmd.ihub.space/api/v1/debt/total', function (er, response, body) {
       if (er) {
         reject(er)
       }
