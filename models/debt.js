@@ -46,37 +46,9 @@ debt.new = function(sold, date, callback){
         }
     })
 }
-    /*Creditor.creditorModel.findOne({name:"UniCredit Bank Austria"},function(err,creditor){
-        console.log(creditor)
-        var debtSample = new Debt({
-            creditor: creditor,
-            type: 'bilateral',
-            date: new Date('31 July 2016'),
-            sold: '21055319',
-            currency: 'USD'
-        });
-        debtSample.save((err,saved) => {
-            console.log(err,saved)
-        })
-    })*/
 
 
-    debt.getTotal = function(callback){
-    /*var total = 0;
-    Creditor.getAll(function(creditors){
-        Async.map(creditors, (creditor, clbk) => {
-            debt.getTotalPerCreditor(creditor._id,function(err, debt){
-                total = total + debt;
-                console.log(debt)
-                clbk(null, total);
-            });
-        }, (err, results) => {
-            results.forEach(function(creditor_last,index){
-                total += creditor_last.sold
-            });
-            callback(total)
-        })
-    });*/
+debt.getTotal = function(callback){
     Debt.aggregate(
        [
 
@@ -96,7 +68,7 @@ debt.new = function(sold, date, callback){
     }
     ]
     ).exec(function(err,result){
-        var total = result ? result[0].total : 0;
+        var total = result && result[0] ? result[0].total : 0;
         callback(total)
     });
 }
@@ -124,7 +96,7 @@ debt.getTotalMonths = function(callback){
     var date = false,
     result = {}
 
-    Debt.find({}).sort([['date','descending']]).populate('creditor').exec(function(err,debts){
+    Debt.find({}).sort('-date').populate('creditor').exec(function(err,debts){
         debts.forEach(function(debt,index){
             date = debt.date
             if(!result[date])
