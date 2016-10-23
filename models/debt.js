@@ -51,25 +51,35 @@ debt.new = function(sold, date, callback){
 debt.getTotal = function(callback){
     Debt.aggregate(
        [
-
        { $sort: { creditor: 1, date: 1, sold: 1 } },
        {
            $group:
            {
                _id: "$creditor",
-               sold: { $last: "$sold" }
+               sold: { $last: "$sold" },
+               date: { $last: "$date" }
            }
        }, 
        {
         $group: { 
             _id: 1,
-            total: { $sum: '$sold' } 
+            total: { $sum: '$sold' },
+            date: { $last: "$date" }
         }
-    }
-    ]
-    ).exec(function(err,result){
+        }
+    ]).exec(function(err,result){
+        //console.log(result)
         var total = result && result[0] ? result[0].total : 0;
-        callback(total)
+        //callback(total);
+        debt.getIncrement(function(increment){
+            console.log(result)
+            var today = new Date();
+            var lastdate = result && result[0] ? result[0].date : 0;
+            var diff = ( today.getTime() - lastdate.getTime() ) / 1000;
+            console.log(increment,diff)
+            total += increment * diff;
+            callback(total);
+        })
     });
 }
 
