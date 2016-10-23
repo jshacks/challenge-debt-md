@@ -121,13 +121,13 @@ debt.getTotalPerCreditor = function(callback){
 
 debt.getTotalMonths = function(callback){
     var date = false,
-        result = []
+        result = {}
     Debt.find({}).sort('date').populate('creditor').exec(function(err,debts){
         debts.forEach(function(debt,index){
             date = debt.date
-            if(date.getTime() === debt.date.getTime()){
-                result[date].push(debt.sold);
-            }
+            if(!result[date])
+                result[date] = 0;
+            result[date] += parseInt(debt.sold);
         });
         callback(result)
     });
