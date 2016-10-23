@@ -6,67 +6,55 @@ var creditorSchema = mongoose.Schema({
 });
 
 var creditor = {};
+var Creditor = mongoose.model('Creditor', creditorSchema);
+creditor.creditorModel = Creditor
 
-creditor.creditorModel = mongoose.model('Creditor', creditorSchema);
-
-/*var creditorSample = new creditor.creditorModel({
-    name: 'UniCredit Bank Austria'
-});
-creditorSample.save((err,saved) => {
-    console.log(err,saved)
-})*/
-creditor.new = function(sold, id){
-    console.log(sold.name)
-    var newModel = creditor.creditorModel ( {
+creditor.new = function(sold, callback){
+    var newModel = new Creditor ( {
         "name": sold.name
     })
-    newModel.save()
+    newModel.save(function (error, creditor){
+        callback(creditor)
+    })
 }
 
 creditor.getTotal = function(){
     
 }
 
+<<<<<<< HEAD
 creditor.getCreditor = function(creditor_id,callback){
     creditor.creditorModel.findOne({'_id':creditor_id},(err,result) => {
+=======
+creditor.getCreditor_by_id = function(creditor_id,callback){
+    Creditor.findOne({'id':creditor_id},(err,result) => {
+        if (callback !== undefined) { callback(result); }
+    });
+}
+
+creditor.getCreditor_by_name = function(creditor_name,callback){
+    Creditor.findOne({'name':creditor_name},(err,result) => {
+>>>>>>> b9115c655bca1521ee4d28763b3da601425ea8f9
         if (callback !== undefined) { callback(result); }
     });
 }
 
 creditor.getCreditorID = function(creditor_name,callback){
-    creditor.creditorModel.findOne({'name': creditor_name},(err,result) => {
+    Creditor.findOne({'name': creditor_name},(err,result) => {
         if (callback !== undefined) { callback(result); }
     });
 }
 
 creditor.getAll = function(callback){
-    creditor.creditorModel.find({},(err,creditors) => {
+    Creditor.find({},(err,creditors) => {
         if (callback !== undefined) { callback(creditors); }
     });
 }
 
 creditor.getCount = function(callback){
-    creditor.creditorModel.count({},(err, count) => {
+    Creditor.count({},(err, count) => {
         if (callback !== undefined) { callback(count); }
     });
 }
-
-/*creditor.getTotalPerCreditor = function(callback){
-    creditor.creditorModel.aggregate(
-       [
-         { $sort: { creditor: 1, date: 1, sold: 1 } },
-         {
-           $group:
-             {
-               _id: "$creditor",
-               sold: { $last: "$sold" }
-             }
-         }
-       ]
-    ).exec(function(err,result){
-        console.log(err,result)
-        callback(result)
-    });
-}*/
 
 module.exports = creditor;
