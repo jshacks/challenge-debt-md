@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-// Connection URL. This is where your mongodb server is running.
 
-mongoose.connect('mongodb://localhost:27017/debt-md');
+mongoose.connect('mongodb://localhost:27017/debt-m');
 
 const db = mongoose.connection;
 
