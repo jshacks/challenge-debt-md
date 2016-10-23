@@ -15,8 +15,9 @@ var debt = {};
 debt.debtModel = Debt
 
 debt.new = function(sold, date){
-    Creditor.getCreditor_by_name(sold.name, function (obj) {
-
+    console.log(sold.name)
+    Creditor.getCreditor_by_name(sold.name, function (err,obj) {
+        console.log(obj)
         if (obj == null) { 
             Creditor.new(sold, function(obj){
                 var newModel = new Debt ( {
@@ -27,7 +28,7 @@ debt.new = function(sold, date){
                     "currency": 'USD'
                 })
                 newModel.save(function(error, object){
-                    console.log(object)
+                    //console.log(object)
                 })
             })
 
@@ -40,7 +41,7 @@ debt.new = function(sold, date){
                 "currency": 'USD'
             })
             newModel.save(function(error, object){
-                console.log(object)
+                //console.log(object)
             })
         }
     })
@@ -60,7 +61,7 @@ debt.new = function(sold, date){
     })*/
 
 
-    debt.getTotal = function(callback){
+debt.getTotal = function(callback){
     /*var total = 0;
     Creditor.getAll(function(creditors){
         Async.map(creditors, (creditor, clbk) => {
@@ -112,6 +113,20 @@ debt.getTotalPerCreditor = function(callback){
                 date = debt.date
             if(date.getTime() === debt.date.getTime()){
                 result.push(debt);
+            }
+        });
+        callback(result)
+    });
+}
+
+debt.getTotalMonths = function(callback){
+    var date = false,
+        result = []
+    Debt.find({}).sort('date').populate('creditor').exec(function(err,debts){
+        debts.forEach(function(debt,index){
+            date = debt.date
+            if(date.getTime() === debt.date.getTime()){
+                result[date].push(debt.sold);
             }
         });
         callback(result)
