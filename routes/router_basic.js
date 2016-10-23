@@ -32,4 +32,11 @@ routes.get('/debt/creditor/', (req, res) => {
 	});
 });
 
+routes.get('/debt/get_increment/', (req, res) => {
+	Debt.getIncrement(function(result){
+		res.json(result);
+	});
+});
+
+
 module.exports = routes;
