@@ -107,7 +107,7 @@ debt.getTotalCreditor = function(creditor_id,callback){
 debt.getTotalPerCreditor = function(callback){
     var date = false,
     result = []
-    Debt.find({}).sort('-date').populate('creditor').exec(function(err,debts){
+    Debt.find({}).sort({'date':-1,'sold':-1}).populate('creditor').exec(function(err,debts){
         debts.forEach(function(debt,index){
             if(!date)
                 date = debt.date
