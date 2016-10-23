@@ -42,7 +42,7 @@ debt.new = function(sold, date, callback){
             })
             newModel.save(function(error, object){
                 callback(object)
-            })
+            });
         }
     })
 }
@@ -96,7 +96,8 @@ debt.new = function(sold, date, callback){
     }
     ]
     ).exec(function(err,result){
-        callback(result[0].total)
+        var total = result ? result[0].total : 0;
+        callback(total)
     });
 }
 
@@ -143,7 +144,11 @@ debt.getTotalMonths = function(callback){
 
 debt.getIncrement = function(callback){
     this.getTotalMonths(function(montsTotals){
-        const increment = ( parseInt(montsTotals[0].value) - parseInt(montsTotals[montsTotals.length - 1].value) ) / ( 60 * 60 * 24 * 30);
+        if(!montsTotals)
+            increment = 0;
+        else
+            var increment = ( parseInt(montsTotals[0].value) - parseInt(montsTotals[montsTotals.length - 1].value) ) / ( 60 * 60 * 24 * 30);
+        
         callback(increment);
     });
 }
