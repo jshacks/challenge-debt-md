@@ -12,8 +12,39 @@ var debtSchema = mongoose.Schema({
 
 var Debt = mongoose.model('Debt', debtSchema);
 var debt = {};
+debt.debtModel = Debt
 
+debt.new = function(sold, date){
+    Creditor.getCreditor_by_name(sold.name, function (obj) {
 
+        if (obj == null) { 
+            Creditor.new(sold, function(obj){
+                var newModel = new Debt ( {
+                    "creditor": obj,
+                    "type": sold.type,
+                    "date": date,
+                    "sold": sold.value,
+                    "currency": 'USD'
+                })
+                newModel.save(function(error, object){
+                    console.log(object)
+                })
+            })
+
+        } else {
+            var newModel = new Debt ( {
+                "creditor": obj,
+                "type": sold.type,
+                "date": date,
+                "sold": sold.value,
+                "currency": 'USD'
+            })
+            newModel.save(function(error, object){
+                console.log(object)
+            })
+        }
+    })
+}
     /*Creditor.creditorModel.findOne({name:"UniCredit Bank Austria"},function(err,creditor){
         console.log(creditor)
         var debtSample = new Debt({
@@ -29,7 +60,7 @@ var debt = {};
     })*/
 
 
-debt.getTotal = function(callback){
+    debt.getTotal = function(callback){
     /*var total = 0;
     Creditor.getAll(function(creditors){
         Async.map(creditors, (creditor, clbk) => {
@@ -47,22 +78,22 @@ debt.getTotal = function(callback){
     });*/
     Debt.aggregate(
        [
-         
-         { $sort: { creditor: 1, date: 1, sold: 1 } },
-         {
+
+       { $sort: { creditor: 1, date: 1, sold: 1 } },
+       {
            $group:
-             {
+           {
                _id: "$creditor",
                sold: { $last: "$sold" }
-             }
-         }, 
-         {
-            $group: { 
-                _id: 1,
-                total: { $sum: '$sold' } 
-            }
-         }
-       ]
+           }
+       }, 
+       {
+        $group: { 
+            _id: 1,
+            total: { $sum: '$sold' } 
+        }
+    }
+    ]
     ).exec(function(err,result){
         callback(result[0].total)
     });
