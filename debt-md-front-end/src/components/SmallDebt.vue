@@ -1,26 +1,10 @@
 <template lang="html">
-  <div class="col-md-4">
-    <div class="debt-box">
-        <h5 v-text="name"></h5>
-        <div class="small-debt">
-          <h3 v-text="commaSeparated"></h3>
-        </div>
-    </div>
-  </div>
+  <li><span v-text="value"></span><h4 v-text="name"></h4></li>
 </template>
 
 <script>
 export default {
   props: ['name', 'value'],
-  computed: {
-    commaSeparated () {
-      let d = this.value.toString().split('.')
-      let e = d[0].split('').reverse().join('')
-      e = e.match(/.{1,3}/g).join(',').split('').reverse().join('')
-      let decimal = (d[1] || '00').substring(0, 2)
-      return `$${e}.${decimal}`
-    }
-  },
   mounted () {},
   methods: {},
   components: {}
@@ -28,42 +12,88 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .col-md-4 {
-    float: none;
-    display: inline-block;
+  .table-of-credits {
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 0 0 1px #fff;
+  margin: 0 0 30px;
   }
-  .debt-box {
-    text-align: center;
-    margin-bottom: 40px;
+  .table-of-credits li {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5em;
+  list-style: none;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 1px 15px;
+  color: #333;
   }
-  .debt-box h5 {
-    text-transform: uppercase;
-    color: #f00;
-    background: #fff;
-    border: 1px solid #e1e1e1;
-    border-bottom: 0;
-    z-index: 2;
-    padding: 5px 10px;
-    display: inline-block;
-    border-radius: 5px 5px 0 0;
-    margin: 0px auto -1px;
-    position: relative;
-    z-index: 4;
+  .table-of-credits li:first-child span,
+  .table-of-credits li:first-child h4 {
+  font-weight: 700;
+  color: #000;
   }
-  .debt-box .small-debt {
-    text-align: center;
-    margin: auto;
-    padding: 20px 10px;
-    border: 1px solid #e1e1e1;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 0 0px 1px #fff;
-    position: relative;
+  .table-of-credits li h4 {
+  font-size: 15px;
   }
-  .debt-box .small-debt h3 {
-    font-size: 37px;
-    line-height: 1em;
-    color: #333;
-    margin: 0;
+  .table-of-credits li:last-child {
+  border-bottom: 0;
+  }
+  .table-of-credits li span {
+  float: right;
+  font-size: 15px;
+  padding-top: 7px;
+  color: #ff4949;
+  }
+
+  .table-of-credits li:nth-child(odd) {
+   background: #f9f9f9 ;
+  }
+
+  .info-box {
+  background: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  border: 1px solid #e1e1e1;
+  padding: 15px;
+  box-shadow: 0 0 0 1px #fff;
+  }
+  .info-box i {
+  font-size: 111px;
+  line-height: 1em;
+  color: #ccc;
+  padding-top: 10px;
+  display: inline-block;
+  }
+  .info-box h4 {
+  font-style: italic;
+  color: #333;
+  margin: 0;
+  }
+  .info-box h5 {
+  font-size: 19px;
+  line-height: 1.5em;
+  font-weight: 600;
+  margin: 0;
+  }
+  .debt-graphic {
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 0 0 1px #fff;
+  }
+  .debt-graphic .debt-graphic-title {
+  display: block;
+  font-size: 15px;
+  line-height: 1.5em;
+  list-style: none;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 1px 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 15px;
+  color: #000;
+  background: #f9f9f9;
+  }
+  .debt-graphic .debt-content {
+  padding: 15px;
   }
 </style>
