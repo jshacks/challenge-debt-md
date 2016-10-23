@@ -11,7 +11,7 @@
 			<h5 v-text="commaSeparatedDebtLastMonth"></h5>
 		</div>
 		<div class="info-box">
-			<h4>Creseterea in ultima luna</h4>
+			<h4>Diferența față de ultima luna</h4>
 			<i class="ion-arrow-graph-up-right"></i>
 			<h5 v-text="commaSeparatedDifference"></h5>
 		</div>

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <div id="curve_chart" style="width: 100%; height: 500px"></div>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
       ])
 
       var options = {
-        title: 'Company Performance',
+        title: 'Fluctuația datoriei in ultimele 3 luni',
         curveType: 'function',
         legend: { position: 'bottom' }
       }
