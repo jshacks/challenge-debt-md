@@ -61,7 +61,7 @@ debt.new = function(sold, date, callback){
     })*/
 
 
-debt.getTotal = function(callback){
+    debt.getTotal = function(callback){
     /*var total = 0;
     Creditor.getAll(function(creditors){
         Async.map(creditors, (creditor, clbk) => {
@@ -106,7 +106,7 @@ debt.getTotalCreditor = function(creditor_id,callback){
 
 debt.getTotalPerCreditor = function(callback){
     var date = false,
-        result = []
+    result = []
     Debt.find({}).sort('-date').populate('creditor').exec(function(err,debts){
         debts.forEach(function(debt,index){
             if(!date)
@@ -121,34 +121,41 @@ debt.getTotalPerCreditor = function(callback){
 
 debt.getTotalMonths = function(callback){
     var date = false,
-        result = {}
+    result = {}
 
-    Debt.find({}).sort('date').populate('creditor').exec(function(err,debts){
+    Debt.find({}).sort([['date','descending']]).populate('creditor').exec(function(err,debts){
         debts.forEach(function(debt,index){
             date = debt.date
             if(!result[date])
                 result[date] = 0;
-            result[date] += parseInt(debt.sold);
+            result[date] += parseFloat(debt.sold);
         });
-        callback(result)
+        var result_array = []
+        for (var key in result) {
+            if (result.hasOwnProperty(key)) { 
+                var tempObj = {                  "date": key,            "value": result[key]            } 
+                result_array.push(tempObj)
+            }
+        }
+        callback(result_array)
     });
 }
 
 debt.getIncrement = function(callback){
     this.getTotalMonths(function(montsTotals){
         var i = 0,
-            firstMonthTotal = 0,
-            lastMonthTotal = 0;
+        firstMonthTotal = 0,
+        lastMonthTotal = 0;
         //montsTotals.forEach(function(month,index){
-        for(var date in montsTotals){
-            if(i===0)
-                firstMonthTotal = parseInt(montsTotals[date]);
-            lastMonthTotal = parseInt(montsTotals[date]);
-            i++;
-        }
-        increment = ( lastMonthTotal - firstMonthTotal ) / ( 60 * 60 * 24 * 30);
-        callback(increment);
-    })
+            for(var date in montsTotals){
+                if(i===0)
+                    firstMonthTotal = parseInt(montsTotals[date]);
+                lastMonthTotal = parseInt(montsTotals[date]);
+                i++;
+            }
+            increment = ( lastMonthTotal - firstMonthTotal ) / ( 60 * 60 * 24 * 30);
+            callback(increment);
+        })
 }
 
 debt.getAll = function(callback){
