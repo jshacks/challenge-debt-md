@@ -30,7 +30,11 @@ creditor.getCreditor_by_id = function(creditor_id,callback){
 
 creditor.getCreditor_by_name = function(creditor_name,callback){
     Creditor.findOne({'name':creditor_name},(err,result) => {
-        if (callback !== undefined) { callback(err,result); }
+        if (err === null) {
+            callback(result); 
+        } else {
+            console.log(err)
+        }
     });
 }
 
