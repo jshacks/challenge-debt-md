@@ -100,8 +100,23 @@ debt.new = function(sold, date, callback){
     });
 }
 
-debt.getTotalPerCreditor = function(creditor_id,callback){
+debt.getTotalCreditor = function(creditor_id,callback){
     Debt.findOne({'creditor':creditor_id}).sort('-date').populate('creditor').exec(callback);
+}
+
+debt.getTotalPerCreditor = function(callback){
+    var date = false,
+        result = []
+    Debt.find({}).sort('-date').populate('creditor').exec(function(err,debts){
+        debts.forEach(function(debt,index){
+            if(!date)
+                date = debt.date
+            if(date.getTime() === debt.date.getTime()){
+                result.push(debt);
+            }
+        });
+        callback(result)
+    });
 }
 
 debt.getAll = function(callback){
