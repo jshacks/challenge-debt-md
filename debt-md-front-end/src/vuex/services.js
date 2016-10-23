@@ -1,11 +1,21 @@
+import request from 'browser-request'
+
 export function getBigDebt () {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({
-        bigDebt: 1454900240.77,
-        population: 2913281
-      })
-    }, 150)
+    // setTimeout(() => {
+    //   resolve({
+    //     bigDebt: 1454900240.77,
+    //     population: 2913281
+    //   })
+    // }, 150)
+    // http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=3&appid=e04b30b1e12c331a401c7669d7ab0afe
+    request('http://192.168.0.187:8080/api/v1/debt/total', function (er, response, body) {
+      if (er) {
+        reject(er)
+      }
+      let obj = JSON.parse(body)
+      resolve(obj)
+    })
   })
 }
 export function getSmallDebts () {
