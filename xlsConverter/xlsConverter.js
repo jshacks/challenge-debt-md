@@ -3,7 +3,7 @@ const creditor = require("./../models/creditor.js")
 const debt = require("./../models/debt.js")
 
 
-const fileNames = ["SOLD_Creditori_1466400279", "Sold_Creditori_30_06_2016", "Sold_Creditori_31_07_2016"]
+const fileNames = ["SOLD_Creditori_1466400279", "Sold_Creditori_30_06_2016", "Sold_Creditori_31_07_2016", "Sold_Creditori_31.08.2016"]
 
 convert_file(0)
 
