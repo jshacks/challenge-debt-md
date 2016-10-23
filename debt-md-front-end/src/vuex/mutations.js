@@ -3,10 +3,10 @@ export default {
     store.bigDebt.bigDebt = bigDebt.total
     store.bigDebt.population = bigDebt.population
   },
-  increaseBigDebt (store, amount) {
+  increaseBigDebtMutation (store, amount) {
     store.bigDebt.bigDebt += amount
   },
-  setDebts (store, smallDebts) {
+  setDebtsMutation (store, smallDebts) {
     store.debts = smallDebts
   },
   setIncrement (store, increment) {

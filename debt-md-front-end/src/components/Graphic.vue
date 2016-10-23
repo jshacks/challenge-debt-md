@@ -16,10 +16,14 @@ export default {
     let drawChart = () => {
       let history = Array.prototype.slice.call(this.bigDebtHistory)
       history.reverse()
-      var data = window.google.visualization.arrayToDataTable([
-        ['Data', 'Datorie'],
-        ...(history.map(el => [el.date, el.value]))
-      ])
+      try {
+        var data = window.google.visualization.arrayToDataTable([
+          ['Data', 'Datorie'],
+          ...(history.map(el => [el.date, el.value]))
+        ])
+      } catch (e) {
+        return
+      }
 
       var options = {
         title: 'Fluctuația datoriei in ultimele 3 luni',

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="big-debt-box">
     <div class="container">
-      <div class="debt-title">DATORIA DE STAT EXTERNA LA 31.08.2016</div>
+      <div class="debt-title">DATORIA DE STAT EXTERNA</div>
       <div class="big-debt">
         <h1 v-text="commaSeparatedBigDebt"></h1>
       </div>

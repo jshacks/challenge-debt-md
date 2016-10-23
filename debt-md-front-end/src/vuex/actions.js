@@ -5,10 +5,10 @@ export default {
     context.commit('setBigDebt', await getBigDebt())
   },
   increaseBigDebt (context, incrementAmount) {
-    context.commit('increaseBigDebt', incrementAmount / 100)
+    context.commit('increaseBigDebtMutation', incrementAmount / 100)
   },
   async getDebts (context) {
-    context.commit('setDebts', await getSmallDebts())
+    context.commit('setDebtsMutation', await getSmallDebts())
   },
   async getIncrementAction (context) {
     context.commit('setIncrement', await getIncrementService())
