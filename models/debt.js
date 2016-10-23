@@ -14,7 +14,8 @@ var Debt = mongoose.model('Debt', debtSchema);
 var debt = {};
 debt.debtModel = Debt
 
-debt.new = function(sold, date){
+debt.new = function(sold, date, callback){
+    console.log(sold)
     Creditor.getCreditor_by_name(sold.name, function (obj) {
 
         if (obj == null) { 
@@ -27,7 +28,7 @@ debt.new = function(sold, date){
                     "currency": 'USD'
                 })
                 newModel.save(function(error, object){
-                    console.log(object)
+                    callback(object)
                 })
             })
 
@@ -40,7 +41,7 @@ debt.new = function(sold, date){
                 "currency": 'USD'
             })
             newModel.save(function(error, object){
-                console.log(object)
+                callback(object)
             })
         }
     })

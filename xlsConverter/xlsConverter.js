@@ -4,15 +4,29 @@ const debt = require("./../models/debt.js")
 
 
 const fileNames = ["SOLD_Creditori_1466400279", "Sold_Creditori_30_06_2016", "Sold_Creditori_31_07_2016"]
-for (var i = fileNames.length - 1; i >= 0; i--) {
-	xls.convert( fileNames[i],  function(data){    insertData(data) }  )
+
+convert_file(0)
+
+function convert_file(file_number){
+	xls.convert( fileNames[file_number],  function(data){    insertData(data, function(){
+		file_number++
+		if (file_number < fileNames.length) {
+			convert_file(file_number)
+		}
+	}) }  )
 }
 
 
-function insertData(data) {
-	var date = dateFromString(data.doc_name)
+function insertData(data, callback) {
+	const date = dateFromString(data.doc_name)
+	var counter = 0
+	const size = data.sold.length
+
 	for (var i = data.sold.length - 1; i >= 0; i--) {
-		debt.new( data.sold[i], date )
+		debt.new( data.sold[i], date, function(obj){
+			counter++
+			if (counter == size) { callback() }
+		} )
 	}
 }
 
