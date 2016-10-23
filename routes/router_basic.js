@@ -26,4 +26,10 @@ routes.get('/debt/creditor/:creditor', (req, res) => {
 	});
 });
 
+routes.get('/debt/creditor/', (req, res) => {
+	Debt.getTotalPerCreditor(function(result){
+		res.json(result);
+	});
+});
+
 module.exports = routes;
