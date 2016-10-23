@@ -14,9 +14,11 @@ export default {
     window.google.charts.setOnLoadCallback(drawChart)
 
     let drawChart = () => {
+      let history = Array.prototype.slice.call(this.bigDebtHistory)
+      history.reverse()
       var data = window.google.visualization.arrayToDataTable([
         ['Data', 'Datorie'],
-        ...(this.bigDebtHistory.map(el => [el.date, el.value]))
+        ...(history.map(el => [el.date, el.value]))
       ])
 
       var options = {
