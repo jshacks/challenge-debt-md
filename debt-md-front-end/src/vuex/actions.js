@@ -11,7 +11,7 @@ export default {
     context.commit('setDebtsMutation', await getSmallDebts())
   },
   async getIncrementAction (context) {
-    context.commit('setIncrement', await getIncrementService())
+    context.commit('setIncrementMutation', await getIncrementService())
   },
   async getBigDebtPerMonth (context) {
     context.commit('setBigDebtHistory', await getBigDebtPerMonth())

@@ -9,7 +9,7 @@ export default {
   setDebtsMutation (store, smallDebts) {
     store.debts = smallDebts
   },
-  setIncrement (store, increment) {
+  setIncrementMutation (store, increment) {
     store.increment = increment
   },
   setBigDebtHistory (store, bigDebtList) {

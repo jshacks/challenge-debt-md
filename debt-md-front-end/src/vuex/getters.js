@@ -20,7 +20,7 @@ export default {
   bigDebtHistory (state) {
     return state.bigDebtHistory
   },
-  increment (state) {
+  incrementGetter (state) {
     return state.increment
   },
   commaSeparatedDebtLastMonth (state) {

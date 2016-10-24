@@ -28,12 +28,12 @@ import SideBar from './SideBar'
 export default {
   computed: mapGetters([
     'debts',
-    'increment',
+    'incrementGetter',
     'bigDebtHistory'
   ]),
   mounted () {
     setInterval(() => {
-      this.increaseBigDebt(this.increment)
+      this.increaseBigDebt(this.incrementGetter)
     }, 10)
     this.getBigDebt()
     this.getDebts()
